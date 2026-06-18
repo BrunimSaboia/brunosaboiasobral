@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Saboia Sobral — Digital Media Analyst & Content Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0D0D;
+    --surface: #141414;
+    --border: rgba(255,255,255,0.08);
+    --text: #F0EDE8;
+    --muted: rgba(240,237,232,0.45);
+    --accent: #E8532A;
+    --accent-dim: rgba(232,83,42,0.12);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2.5rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    min-height: 2.4rem;
+  }
+
+  .hero-tagline .typed-text { color: var(--text); }
+  .hero-tagline .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--accent);
+    margin-left: 3px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-desc {
+    font-size: 1.0625rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    line-height: 1.75;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+
+  .hero-scroll {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stat-item {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* CASES */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .case-card:hover {
+    border-color: rgba(255,255,255,0.16);
+    transform: translateY(-3px);
+  }
+
+  .case-card:hover::before { transform: scaleX(1); }
+
+  .case-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 1.25rem;
+  }
+
+  .case-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .case-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-result {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .case-result strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .skills-col h3 {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .skill-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .skill-level {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .skill-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .skill-fill.animated { transform: scaleX(1); }
+
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tool-tag {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tool-tag:hover {
+    border-color: rgba(232,83,42,0.4);
+    color: var(--text);
+  }
+
+  /* EDUCATION */
+  .edu-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu-item:first-child { border-top: 1px solid var(--border); }
+
+  .edu-year {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+  }
+
+  .edu-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-info p {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 100%;
+    padding: 6rem 2.5rem;
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contact-text .section-title { margin-bottom: 1rem; }
+
+  .contact-text p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: rgba(232,83,42,0.5);
+    background: var(--accent-dim);
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-dim);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--accent);
+  }
+
+  .contact-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-label span:first-child {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .contact-label span:last-child {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 0.1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 2.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    #contact { padding: 4rem 1.5rem; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Bruno<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Formação</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">Digital Media Analyst & Content Strategist</p>
+  <h1 class="hero-name">Bruno<br>Saboia Sobral.</h1>
+  <p class="hero-tagline">
+    <span class="typed-text" id="typed"></span><span class="cursor"></span>
+  </p>
+  <p class="hero-desc">
+    Ajudo marcas a construírem presença digital com estratégia, dados e narrativa. De campanhas pagas a conteúdo orgânico, entrego resultados que aparecem nos números.
+  </p>
+  <div class="hero-cta">
+    <a href="#cases" class="btn-primary">Ver cases</a>
+    <a href="#contact" class="btn-ghost">Vamos conversar</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    <span>scroll</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">Sobre mim</p>
+  <h2 class="section-title reveal">Estratégia com alma<br>de criador de conteúdo.</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Sou analista de mídias digitais e estrategista de conteúdo baseado em <strong>Fortaleza, Ceará</strong>. Atualmente na <strong>Agil Comunicação</strong>, com experiência em clientes como Farmácias Pague Menos e órgãos públicos do Ceará.</p>
+      <p>Minha formação é em <strong>Sistemas e Mídias Digitais pela UFC</strong>, complementada por pós-graduação em Copywriting e UX Writing. Essa combinação me permite transitar entre a estratégia, a escrita e a análise de dados sem perder o fio.</p>
+      <p>Cubro desde o planejamento de mídia paga (Meta Ads, Google Ads, TikTok Ads) até a criação de conteúdo institucional, monitoramento de marca e relatórios de métricas.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-item">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Anos de experiência em mídias digitais</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Clientes atendidos em agência</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Setores: varejo, saúde pública e governo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CASES -->
+<section id="cases">
+  <p class="section-label reveal">Cases selecionados</p>
+  <h2 class="section-title reveal">Trabalhos que<br>geraram resultado.</h2>
+  <div class="cases-grid">
+
+    <div class="case-card reveal">
+      <span class="case-tag">Gastronomia & Lifestyle</span>
+      <h3 class="case-title">Bar Laje da Praia</h3>
+      <p class="case-desc">Responsável pela concepção e execução completa da estratégia de marca e redes sociais. O trabalho envolveu desde a definição de posicionamento e tom de voz até o planejamento editorial e produção de conteúdo para o dia a dia do negócio.</p>
+      <div class="case-result">
+        <strong>Entregável:</strong> Estratégia de marca, calendário editorial e copy de redes sociais
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="case-tag">Jornalismo digital</span>
+      <h3 class="case-title">Portal Fala, CE</h3>
+      <p class="case-desc">Em parceria com um diretor de arte, criou a marca de um portal independente de notícias sobre o Ceará, incluindo a concepção do nome, posicionamento editorial e os pilares de comunicação do veículo.</p>
+      <div class="case-result">
+        <strong>Entregável:</strong> Concepção de marca e direção editorial
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="case-tag">Governo & Educação</span>
+      <h3 class="case-title">Campanha ENEM — Seduc-CE</h3>
+      <p class="case-desc">Conteúdo institucional para a Secretaria de Educação do Ceará voltado à visibilidade de estudantes da rede pública. Produção de copy e estratégia de publicação para redes sociais.</p>
+      <div class="case-result">
+        <strong>Entregável:</strong> Copy, calendário editorial e estratégia de engajamento
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="case-tag">Varejo & Farmácia</span>
+      <h3 class="case-title">Farmácias Pague Menos</h3>
+      <p class="case-desc">Redator responsável pela conta de março de 2022 a janeiro de 2024. Mais de 400 peças produzidas em 22 meses, entre posts estáticos, vídeos e uma web série de 4 episódios sobre skincare — formato editorial raramente visto em contas de varejo farmacêutico.</p>
+      <div class="case-result">
+        <strong>Entregável:</strong> Copy de feed, roteiros de vídeo e roteiros da web série
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <span class="case-tag">Bebidas & Varejo</span>
+      <h3 class="case-title">Ypióca, Mercadinhos São Luiz e Normatel</h3>
+      <p class="case-desc">Redator de três contas simultâneas. Para a Ypióca, 9 posts mensais com mix de estático e vídeo, mais 4 roteiros para a campanha de São João. Para os Mercadinhos São Luiz e a Normatel Home Center, mais de 20 conteúdos por mês em cada conta.</p>
+      <div class="case-result">
+        <strong>Entregável:</strong> Copy de feed, roteiros de vídeo e campanhas sazonais
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">Competências</p>
+  <h2 class="section-title reveal">O que eu faço<br>bem feito.</h2>
+  <div class="skills-grid">
+    <div class="skills-col reveal">
+      <h3>Habilidades principais</h3>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Estratégia de conteúdo</span>
+          <span class="skill-level">Avançado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.92"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Mídia paga (Meta, Google, TikTok)</span>
+          <span class="skill-level">Avançado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.88"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Copywriting & UX Writing</span>
+          <span class="skill-level">Avançado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Análise de métricas</span>
+          <span class="skill-level">Avançado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Social media management</span>
+          <span class="skill-level">Avançado</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.93"></div></div>
+      </div>
+    </div>
+
+    <div class="skills-col reveal">
+      <h3>Ferramentas & plataformas</h3>
+      <div class="tools-list">
+        <span class="tool-tag">Meta Business Suite</span>
+        <span class="tool-tag">Google Ads</span>
+        <span class="tool-tag">TikTok Ads</span>
+        <span class="tool-tag">Google Analytics 4</span>
+        <span class="tool-tag">Brand24</span>
+        <span class="tool-tag">Meta Ads Manager</span>
+        <span class="tool-tag">Canva Pro</span>
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Google Data Studio</span>
+        <span class="tool-tag">Notion</span>
+        <span class="tool-tag">ChatGPT / Claude AI</span>
+        <span class="tool-tag">PowerPoint</span>
+        <span class="tool-tag">Excel / Sheets</span>
+        <span class="tool-tag">e-Social / e-CAC</span>
+        <span class="tool-tag">HTML & CSS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label reveal">Formação</p>
+  <h2 class="section-title reveal">Base acadêmica.</h2>
+  <div class="edu-list">
+
+    <div class="edu-item reveal">
+      <div class="edu-year">Pós-graduação</div>
+      <div class="edu-info">
+        <h3>UX Writing</h3>
+        <p>Especialização em escrita orientada à experiência do usuário, com foco em microcopy, fluxos e consistência de voz.</p>
+      </div>
+    </div>
+
+    <div class="edu-item reveal">
+      <div class="edu-year">Pós-graduação</div>
+      <div class="edu-info">
+        <h3>Copywriting Publicitário</h3>
+        <p>Técnicas de persuasão, estrutura de argumentação e criação de conteúdo para diferentes canais e objetivos de conversão.</p>
+      </div>
+    </div>
+
+    <div class="edu-item reveal">
+      <div class="edu-year">Graduação — UFC</div>
+      <div class="edu-info">
+        <h3>Sistemas e Mídias Digitais</h3>
+        <p>Universidade Federal do Ceará. Formação técnica e teórica em comunicação digital, desenvolvimento web e mídias interativas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <p class="section-label reveal">Contato</p>
+      <h2 class="section-title reveal">Tem um projeto?<br>Vamos falar.</h2>
+      <p class="reveal">Estou disponível para projetos freelance de estratégia, mídia paga, copywriting e consultoria digital.</p>
+      <a href="mailto:seu@email.com" class="btn-primary reveal">Enviar e-mail</a>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:seu@email.com" class="contact-link">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="contact-label">
+          <span>E-mail</span>
+          <span>seu@email.com</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/seu-linkedin" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="contact-label">
+          <span>LinkedIn</span>
+          <span>linkedin.com/in/seu-linkedin</span>
+        </div>
+      </a>
+      <a href="https://wa.me/5585999999999" target="_blank" class="contact-link">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <div class="contact-label">
+          <span>WhatsApp</span>
+          <span>+55 (85) 9 9999-9999</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Bruno Saboia Sobral — Fortaleza, CE</p>
+</footer>
+
+<script>
+  // TYPED EFFECT
+  const phrases = [
+    'Estratégia de conteúdo.',
+    'Mídia paga que converte.',
+    'Copy com personalidade.',
+    'Dados que fazem sentido.'
+  ];
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+  const el = document.getElementById('typed');
+
+  function type() {
+    const current = phrases[phraseIdx];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++charIdx);
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(type, 400);
+        return;
+      }
+    }
+    setTimeout(type, deleting ? 40 : 65);
+  }
+  type();
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // SKILL BARS
+  const fills = document.querySelectorAll('.skill-fill');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const w = parseFloat(e.target.style.getPropertyValue('--w') || '0.8');
+        e.target.style.transform = `scaleX(${w})`;
+        e.target.classList.add('animated');
+        skillObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(f => skillObserver.observe(f));
+</script>
+</body>
+</html>
